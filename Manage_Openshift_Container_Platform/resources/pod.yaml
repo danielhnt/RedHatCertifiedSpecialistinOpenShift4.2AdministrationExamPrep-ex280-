@@ -1,0 +1,530 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.ovn.org/pod-networks: '{"default":{"ip_addresses":["10.217.0.141/23"],"mac_address":"0a:58:0a:d9:00:8d","gateway_ips":["10.217.0.1"],"routes":[{"dest":"10.217.0.0/22","nextHop":"10.217.0.1"},{"dest":"10.217.4.0/23","nextHop":"10.217.0.1"},{"dest":"100.64.0.0/16","nextHop":"10.217.0.1"}],"ip_address":"10.217.0.141/23","gateway_ip":"10.217.0.1"}}'
+      k8s.v1.cni.cncf.io/network-status: |-
+        [{
+            "name": "ovn-kubernetes",
+            "interface": "eth0",
+            "ips": [
+                "10.217.0.141"
+            ],
+            "mac": "0a:58:0a:d9:00:8d",
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/build.name: ruby-hello-world-1
+      openshift.io/scc: privileged
+    creationTimestamp: "2024-06-15T22:40:36Z"
+    labels:
+      openshift.io/build.name: ruby-hello-world-1
+    name: ruby-hello-world-1-build
+    namespace: demo
+    ownerReferences:
+    - apiVersion: build.openshift.io/v1
+      controller: true
+      kind: Build
+      name: ruby-hello-world-1
+      uid: e51f02b6-5d12-43d6-89c2-5197606db582
+    resourceVersion: "152661"
+    uid: 0343b596-ac64-4685-88d2-4b4a2261b2ec
+  spec:
+    activeDeadlineSeconds: 604800
+    containers:
+    - args:
+      - openshift-docker-build
+      - --v=0
+      env:
+      - name: BUILD
+        value: |
+          {"kind":"Build","apiVersion":"build.openshift.io/v1","metadata":{"name":"ruby-hello-world-1","namespace":"demo","uid":"e51f02b6-5d12-43d6-89c2-5197606db582","resourceVersion":"152483","generation":1,"creationTimestamp":"2024-06-15T22:40:36Z","labels":{"app":"ruby-hello-world","app.kubernetes.io/component":"ruby-hello-world","app.kubernetes.io/instance":"ruby-hello-world","buildconfig":"ruby-hello-world","openshift.io/build-config.name":"ruby-hello-world","openshift.io/build.start-policy":"Serial"},"annotations":{"openshift.io/build-config.name":"ruby-hello-world","openshift.io/build.number":"1"},"ownerReferences":[{"apiVersion":"build.openshift.io/v1","kind":"BuildConfig","name":"ruby-hello-world","uid":"a7cb9849-e99c-4f68-959f-3877804b7aab","controller":true}],"managedFields":[{"manager":"openshift-apiserver","operation":"Update","apiVersion":"build.openshift.io/v1","time":"2024-06-15T22:40:36Z","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:openshift.io/build-config.name":{},"f:openshift.io/build.number":{}},"f:labels":{".":{},"f:app":{},"f:app.kubernetes.io/component":{},"f:app.kubernetes.io/instance":{},"f:buildconfig":{},"f:openshift.io/build-config.name":{},"f:openshift.io/build.start-policy":{}},"f:ownerReferences":{".":{},"k:{\"uid\":\"a7cb9849-e99c-4f68-959f-3877804b7aab\"}":{}}},"f:spec":{"f:output":{"f:to":{}},"f:serviceAccount":{},"f:source":{"f:git":{".":{},"f:uri":{}},"f:type":{}},"f:strategy":{"f:dockerStrategy":{".":{},"f:from":{}},"f:type":{}},"f:triggeredBy":{}},"f:status":{"f:conditions":{".":{},"k:{\"type\":\"New\"}":{".":{},"f:lastTransitionTime":{},"f:lastUpdateTime":{},"f:status":{},"f:type":{}}},"f:config":{},"f:phase":{}}}}]},"spec":{"serviceAccount":"builder","source":{"type":"Git","git":{"uri":"https://github.com/openshift/ruby-hello-world.git"}},"strategy":{"type":"Docker","dockerStrategy":{"from":{"kind":"DockerImage","name":"registry.access.redhat.com/ubi8/ruby-27@sha256:7e53fb5d8f06831a9c235c174a11b06b640076eb7c33ff093609f2ceb295ec32"},"pullSecret":{"name":"builder-dockercfg-85vw8"}}},"output":{"to":{"kind":"DockerImage","name":"image-registry.openshift-image-registry.svc:5000/demo/ruby-hello-world:latest"},"pushSecret":{"name":"builder-dockercfg-85vw8"}},"resources":{},"postCommit":{},"nodeSelector":null,"triggeredBy":[{"message":"Image change","imageChangeBuild":{"imageID":"registry.access.redhat.com/ubi8/ruby-27@sha256:7e53fb5d8f06831a9c235c174a11b06b640076eb7c33ff093609f2ceb295ec32","fromRef":{"kind":"ImageStreamTag","name":"ruby-27:latest"}}}]},"status":{"phase":"New","outputDockerImageReference":"image-registry.openshift-image-registry.svc:5000/demo/ruby-hello-world:latest","config":{"kind":"BuildConfig","namespace":"demo","name":"ruby-hello-world"},"output":{},"conditions":[{"type":"New","status":"True","lastUpdateTime":"2024-06-15T22:40:36Z","lastTransitionTime":"2024-06-15T22:40:36Z"}]}}
+      - name: LANG
+        value: C.utf8
+      - name: SOURCE_REPOSITORY
+        value: https://github.com/openshift/ruby-hello-world.git
+      - name: SOURCE_URI
+        value: https://github.com/openshift/ruby-hello-world.git
+      - name: PUSH_DOCKERCFG_PATH
+        value: /var/run/secrets/openshift.io/push
+      - name: PULL_DOCKERCFG_PATH
+        value: /var/run/secrets/openshift.io/pull
+      - name: BUILD_REGISTRIES_CONF_PATH
+        value: /var/run/configs/openshift.io/build-system/registries.conf
+      - name: BUILD_REGISTRIES_DIR_PATH
+        value: /var/run/configs/openshift.io/build-system/registries.d
+      - name: BUILD_SIGNATURE_POLICY_PATH
+        value: /var/run/configs/openshift.io/build-system/policy.json
+      - name: BUILD_STORAGE_CONF_PATH
+        value: /var/run/configs/openshift.io/build-system/storage.conf
+      - name: BUILD_BLOBCACHE_DIR
+        value: /var/cache/blobs
+      - name: HTTP_PROXY
+      - name: HTTPS_PROXY
+      - name: NO_PROXY
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:3e0a6db61a004397ef5b048f75f57b05a4240889330512f15f3d014a5fc1c15d
+      imagePullPolicy: IfNotPresent
+      name: docker-build
+      resources: {}
+      securityContext:
+        privileged: true
+        runAsGroup: 0
+        runAsUser: 0
+        seccompProfile:
+          type: Unconfined
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: FallbackToLogsOnError
+      volumeMounts:
+      - mountPath: /var/lib/kubelet/config.json
+        name: node-pullsecrets
+      - mountPath: /tmp/build
+        name: buildworkdir
+      - mountPath: /var/lib/containers/cache
+        name: buildcachedir
+      - mountPath: /var/run/secrets/openshift.io/push
+        name: builder-dockercfg-85vw8-push
+        readOnly: true
+      - mountPath: /var/run/secrets/openshift.io/pull
+        name: builder-dockercfg-85vw8-pull
+        readOnly: true
+      - mountPath: /var/run/configs/openshift.io/build-system
+        name: build-system-configs
+        readOnly: true
+      - mountPath: /var/run/configs/openshift.io/certs
+        name: build-ca-bundles
+      - mountPath: /var/run/configs/openshift.io/pki
+        name: build-proxy-ca-bundles
+      - mountPath: /var/lib/containers
+        name: container-storage-root
+      - mountPath: /var/run/containers
+        name: container-storage-run
+      - mountPath: /var/cache/blobs
+        name: build-blob-cache
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-p97hw
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: builder-dockercfg-85vw8
+    initContainers:
+    - args:
+      - openshift-git-clone
+      - --v=0
+      env:
+      - name: BUILD
+        value: |
+          {"kind":"Build","apiVersion":"build.openshift.io/v1","metadata":{"name":"ruby-hello-world-1","namespace":"demo","uid":"e51f02b6-5d12-43d6-89c2-5197606db582","resourceVersion":"152483","generation":1,"creationTimestamp":"2024-06-15T22:40:36Z","labels":{"app":"ruby-hello-world","app.kubernetes.io/component":"ruby-hello-world","app.kubernetes.io/instance":"ruby-hello-world","buildconfig":"ruby-hello-world","openshift.io/build-config.name":"ruby-hello-world","openshift.io/build.start-policy":"Serial"},"annotations":{"openshift.io/build-config.name":"ruby-hello-world","openshift.io/build.number":"1"},"ownerReferences":[{"apiVersion":"build.openshift.io/v1","kind":"BuildConfig","name":"ruby-hello-world","uid":"a7cb9849-e99c-4f68-959f-3877804b7aab","controller":true}],"managedFields":[{"manager":"openshift-apiserver","operation":"Update","apiVersion":"build.openshift.io/v1","time":"2024-06-15T22:40:36Z","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:openshift.io/build-config.name":{},"f:openshift.io/build.number":{}},"f:labels":{".":{},"f:app":{},"f:app.kubernetes.io/component":{},"f:app.kubernetes.io/instance":{},"f:buildconfig":{},"f:openshift.io/build-config.name":{},"f:openshift.io/build.start-policy":{}},"f:ownerReferences":{".":{},"k:{\"uid\":\"a7cb9849-e99c-4f68-959f-3877804b7aab\"}":{}}},"f:spec":{"f:output":{"f:to":{}},"f:serviceAccount":{},"f:source":{"f:git":{".":{},"f:uri":{}},"f:type":{}},"f:strategy":{"f:dockerStrategy":{".":{},"f:from":{}},"f:type":{}},"f:triggeredBy":{}},"f:status":{"f:conditions":{".":{},"k:{\"type\":\"New\"}":{".":{},"f:lastTransitionTime":{},"f:lastUpdateTime":{},"f:status":{},"f:type":{}}},"f:config":{},"f:phase":{}}}}]},"spec":{"serviceAccount":"builder","source":{"type":"Git","git":{"uri":"https://github.com/openshift/ruby-hello-world.git"}},"strategy":{"type":"Docker","dockerStrategy":{"from":{"kind":"DockerImage","name":"registry.access.redhat.com/ubi8/ruby-27@sha256:7e53fb5d8f06831a9c235c174a11b06b640076eb7c33ff093609f2ceb295ec32"},"pullSecret":{"name":"builder-dockercfg-85vw8"}}},"output":{"to":{"kind":"DockerImage","name":"image-registry.openshift-image-registry.svc:5000/demo/ruby-hello-world:latest"},"pushSecret":{"name":"builder-dockercfg-85vw8"}},"resources":{},"postCommit":{},"nodeSelector":null,"triggeredBy":[{"message":"Image change","imageChangeBuild":{"imageID":"registry.access.redhat.com/ubi8/ruby-27@sha256:7e53fb5d8f06831a9c235c174a11b06b640076eb7c33ff093609f2ceb295ec32","fromRef":{"kind":"ImageStreamTag","name":"ruby-27:latest"}}}]},"status":{"phase":"New","outputDockerImageReference":"image-registry.openshift-image-registry.svc:5000/demo/ruby-hello-world:latest","config":{"kind":"BuildConfig","namespace":"demo","name":"ruby-hello-world"},"output":{},"conditions":[{"type":"New","status":"True","lastUpdateTime":"2024-06-15T22:40:36Z","lastTransitionTime":"2024-06-15T22:40:36Z"}]}}
+      - name: LANG
+        value: C.utf8
+      - name: SOURCE_REPOSITORY
+        value: https://github.com/openshift/ruby-hello-world.git
+      - name: SOURCE_URI
+        value: https://github.com/openshift/ruby-hello-world.git
+      - name: BUILD_REGISTRIES_CONF_PATH
+        value: /var/run/configs/openshift.io/build-system/registries.conf
+      - name: BUILD_REGISTRIES_DIR_PATH
+        value: /var/run/configs/openshift.io/build-system/registries.d
+      - name: BUILD_SIGNATURE_POLICY_PATH
+        value: /var/run/configs/openshift.io/build-system/policy.json
+      - name: BUILD_STORAGE_CONF_PATH
+        value: /var/run/configs/openshift.io/build-system/storage.conf
+      - name: BUILD_BLOBCACHE_DIR
+        value: /var/cache/blobs
+      - name: HTTP_PROXY
+      - name: HTTPS_PROXY
+      - name: NO_PROXY
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:3e0a6db61a004397ef5b048f75f57b05a4240889330512f15f3d014a5fc1c15d
+      imagePullPolicy: IfNotPresent
+      name: git-clone
+      resources: {}
+      securityContext:
+        privileged: true
+        runAsGroup: 0
+        runAsUser: 0
+        seccompProfile:
+          type: Unconfined
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: FallbackToLogsOnError
+      volumeMounts:
+      - mountPath: /tmp/build
+        name: buildworkdir
+      - mountPath: /var/run/configs/openshift.io/build-system
+        name: build-system-configs
+        readOnly: true
+      - mountPath: /var/run/configs/openshift.io/certs
+        name: build-ca-bundles
+      - mountPath: /var/run/configs/openshift.io/pki
+        name: build-proxy-ca-bundles
+      - mountPath: /var/cache/blobs
+        name: build-blob-cache
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-p97hw
+        readOnly: true
+    - args:
+      - openshift-manage-dockerfile
+      - --v=0
+      env:
+      - name: BUILD
+        value: |
+          {"kind":"Build","apiVersion":"build.openshift.io/v1","metadata":{"name":"ruby-hello-world-1","namespace":"demo","uid":"e51f02b6-5d12-43d6-89c2-5197606db582","resourceVersion":"152483","generation":1,"creationTimestamp":"2024-06-15T22:40:36Z","labels":{"app":"ruby-hello-world","app.kubernetes.io/component":"ruby-hello-world","app.kubernetes.io/instance":"ruby-hello-world","buildconfig":"ruby-hello-world","openshift.io/build-config.name":"ruby-hello-world","openshift.io/build.start-policy":"Serial"},"annotations":{"openshift.io/build-config.name":"ruby-hello-world","openshift.io/build.number":"1"},"ownerReferences":[{"apiVersion":"build.openshift.io/v1","kind":"BuildConfig","name":"ruby-hello-world","uid":"a7cb9849-e99c-4f68-959f-3877804b7aab","controller":true}],"managedFields":[{"manager":"openshift-apiserver","operation":"Update","apiVersion":"build.openshift.io/v1","time":"2024-06-15T22:40:36Z","fieldsType":"FieldsV1","fieldsV1":{"f:metadata":{"f:annotations":{".":{},"f:openshift.io/build-config.name":{},"f:openshift.io/build.number":{}},"f:labels":{".":{},"f:app":{},"f:app.kubernetes.io/component":{},"f:app.kubernetes.io/instance":{},"f:buildconfig":{},"f:openshift.io/build-config.name":{},"f:openshift.io/build.start-policy":{}},"f:ownerReferences":{".":{},"k:{\"uid\":\"a7cb9849-e99c-4f68-959f-3877804b7aab\"}":{}}},"f:spec":{"f:output":{"f:to":{}},"f:serviceAccount":{},"f:source":{"f:git":{".":{},"f:uri":{}},"f:type":{}},"f:strategy":{"f:dockerStrategy":{".":{},"f:from":{}},"f:type":{}},"f:triggeredBy":{}},"f:status":{"f:conditions":{".":{},"k:{\"type\":\"New\"}":{".":{},"f:lastTransitionTime":{},"f:lastUpdateTime":{},"f:status":{},"f:type":{}}},"f:config":{},"f:phase":{}}}}]},"spec":{"serviceAccount":"builder","source":{"type":"Git","git":{"uri":"https://github.com/openshift/ruby-hello-world.git"}},"strategy":{"type":"Docker","dockerStrategy":{"from":{"kind":"DockerImage","name":"registry.access.redhat.com/ubi8/ruby-27@sha256:7e53fb5d8f06831a9c235c174a11b06b640076eb7c33ff093609f2ceb295ec32"},"pullSecret":{"name":"builder-dockercfg-85vw8"}}},"output":{"to":{"kind":"DockerImage","name":"image-registry.openshift-image-registry.svc:5000/demo/ruby-hello-world:latest"},"pushSecret":{"name":"builder-dockercfg-85vw8"}},"resources":{},"postCommit":{},"nodeSelector":null,"triggeredBy":[{"message":"Image change","imageChangeBuild":{"imageID":"registry.access.redhat.com/ubi8/ruby-27@sha256:7e53fb5d8f06831a9c235c174a11b06b640076eb7c33ff093609f2ceb295ec32","fromRef":{"kind":"ImageStreamTag","name":"ruby-27:latest"}}}]},"status":{"phase":"New","outputDockerImageReference":"image-registry.openshift-image-registry.svc:5000/demo/ruby-hello-world:latest","config":{"kind":"BuildConfig","namespace":"demo","name":"ruby-hello-world"},"output":{},"conditions":[{"type":"New","status":"True","lastUpdateTime":"2024-06-15T22:40:36Z","lastTransitionTime":"2024-06-15T22:40:36Z"}]}}
+      - name: LANG
+        value: C.utf8
+      - name: SOURCE_REPOSITORY
+        value: https://github.com/openshift/ruby-hello-world.git
+      - name: SOURCE_URI
+        value: https://github.com/openshift/ruby-hello-world.git
+      - name: BUILD_REGISTRIES_CONF_PATH
+        value: /var/run/configs/openshift.io/build-system/registries.conf
+      - name: BUILD_REGISTRIES_DIR_PATH
+        value: /var/run/configs/openshift.io/build-system/registries.d
+      - name: BUILD_SIGNATURE_POLICY_PATH
+        value: /var/run/configs/openshift.io/build-system/policy.json
+      - name: BUILD_STORAGE_CONF_PATH
+        value: /var/run/configs/openshift.io/build-system/storage.conf
+      - name: BUILD_BLOBCACHE_DIR
+        value: /var/cache/blobs
+      - name: HTTP_PROXY
+      - name: HTTPS_PROXY
+      - name: NO_PROXY
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:3e0a6db61a004397ef5b048f75f57b05a4240889330512f15f3d014a5fc1c15d
+      imagePullPolicy: IfNotPresent
+      name: manage-dockerfile
+      resources: {}
+      securityContext:
+        privileged: true
+        runAsGroup: 0
+        runAsUser: 0
+        seccompProfile:
+          type: Unconfined
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: FallbackToLogsOnError
+      volumeMounts:
+      - mountPath: /tmp/build
+        name: buildworkdir
+      - mountPath: /var/run/configs/openshift.io/build-system
+        name: build-system-configs
+        readOnly: true
+      - mountPath: /var/run/configs/openshift.io/certs
+        name: build-ca-bundles
+      - mountPath: /var/run/configs/openshift.io/pki
+        name: build-proxy-ca-bundles
+      - mountPath: /var/cache/blobs
+        name: build-blob-cache
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-p97hw
+        readOnly: true
+    nodeName: crc
+    nodeSelector:
+      kubernetes.io/os: linux
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Never
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: builder
+    serviceAccountName: builder
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - hostPath:
+        path: /var/lib/containers/cache
+        type: ""
+      name: buildcachedir
+    - emptyDir: {}
+      name: buildworkdir
+    - hostPath:
+        path: /var/lib/kubelet/config.json
+        type: File
+      name: node-pullsecrets
+    - name: builder-dockercfg-85vw8-push
+      secret:
+        defaultMode: 384
+        secretName: builder-dockercfg-85vw8
+    - name: builder-dockercfg-85vw8-pull
+      secret:
+        defaultMode: 384
+        secretName: builder-dockercfg-85vw8
+    - configMap:
+        defaultMode: 420
+        name: ruby-hello-world-1-sys-config
+      name: build-system-configs
+    - configMap:
+        defaultMode: 420
+        items:
+        - key: service-ca.crt
+          path: certs.d/image-registry.openshift-image-registry.svc:5000/ca.crt
+        - key: default-route-openshift-image-registry.apps-crc.testing
+          path: certs.d/default-route-openshift-image-registry.apps-crc.testing/ca.crt
+        name: ruby-hello-world-1-ca
+      name: build-ca-bundles
+    - configMap:
+        defaultMode: 420
+        items:
+        - key: ca-bundle.crt
+          path: tls-ca-bundle.pem
+        name: ruby-hello-world-1-global-ca
+      name: build-proxy-ca-bundles
+    - emptyDir: {}
+      name: container-storage-root
+    - emptyDir: {}
+      name: container-storage-run
+    - emptyDir: {}
+      name: build-blob-cache
+    - name: kube-api-access-p97hw
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+        - configMap:
+            items:
+            - key: service-ca.crt
+              path: service-ca.crt
+            name: openshift-service-ca.crt
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-06-15T22:40:53Z"
+      reason: PodCompleted
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-06-15T22:41:21Z"
+      reason: PodCompleted
+      status: "False"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-06-15T22:41:21Z"
+      reason: PodCompleted
+      status: "False"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-06-15T22:40:36Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://98c331dc2b129ecdfbeae05445452a8d153358e36e7d0c0a4c02b10afa9015aa
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:3e0a6db61a004397ef5b048f75f57b05a4240889330512f15f3d014a5fc1c15d
+      imageID: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:3e0a6db61a004397ef5b048f75f57b05a4240889330512f15f3d014a5fc1c15d
+      lastState: {}
+      name: docker-build
+      ready: false
+      restartCount: 0
+      started: false
+      state:
+        terminated:
+          containerID: cri-o://98c331dc2b129ecdfbeae05445452a8d153358e36e7d0c0a4c02b10afa9015aa
+          exitCode: 0
+          finishedAt: "2024-06-15T22:41:20Z"
+          reason: Completed
+          startedAt: "2024-06-15T22:40:54Z"
+    hostIP: 192.168.126.11
+    initContainerStatuses:
+    - containerID: cri-o://eec698f6dedd3e533df080e068fdd0cd1db74b601bf27eab0c44a4eb63f4326f
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:3e0a6db61a004397ef5b048f75f57b05a4240889330512f15f3d014a5fc1c15d
+      imageID: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:3e0a6db61a004397ef5b048f75f57b05a4240889330512f15f3d014a5fc1c15d
+      lastState: {}
+      name: git-clone
+      ready: true
+      restartCount: 0
+      started: false
+      state:
+        terminated:
+          containerID: cri-o://eec698f6dedd3e533df080e068fdd0cd1db74b601bf27eab0c44a4eb63f4326f
+          exitCode: 0
+          finishedAt: "2024-06-15T22:40:52Z"
+          reason: Completed
+          startedAt: "2024-06-15T22:40:50Z"
+    - containerID: cri-o://d2d85a95a5a9c814c87082415b5d9c19dc659d146d4968b244da2414f9c73851
+      image: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:3e0a6db61a004397ef5b048f75f57b05a4240889330512f15f3d014a5fc1c15d
+      imageID: quay.io/openshift-release-dev/ocp-v4.0-art-dev@sha256:3e0a6db61a004397ef5b048f75f57b05a4240889330512f15f3d014a5fc1c15d
+      lastState: {}
+      name: manage-dockerfile
+      ready: true
+      restartCount: 0
+      started: false
+      state:
+        terminated:
+          containerID: cri-o://d2d85a95a5a9c814c87082415b5d9c19dc659d146d4968b244da2414f9c73851
+          exitCode: 0
+          finishedAt: "2024-06-15T22:40:53Z"
+          reason: Completed
+          startedAt: "2024-06-15T22:40:53Z"
+    phase: Succeeded
+    podIP: 10.217.0.141
+    podIPs:
+    - ip: 10.217.0.141
+    qosClass: BestEffort
+    startTime: "2024-06-15T22:40:36Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      k8s.ovn.org/pod-networks: '{"default":{"ip_addresses":["10.217.0.152/23"],"mac_address":"0a:58:0a:d9:00:98","gateway_ips":["10.217.0.1"],"routes":[{"dest":"10.217.0.0/22","nextHop":"10.217.0.1"},{"dest":"10.217.4.0/23","nextHop":"10.217.0.1"},{"dest":"100.64.0.0/16","nextHop":"10.217.0.1"}],"ip_address":"10.217.0.152/23","gateway_ip":"10.217.0.1"}}'
+      k8s.v1.cni.cncf.io/network-status: |-
+        [{
+            "name": "ovn-kubernetes",
+            "interface": "eth0",
+            "ips": [
+                "10.217.0.152"
+            ],
+            "mac": "0a:58:0a:d9:00:98",
+            "default": true,
+            "dns": {}
+        }]
+      openshift.io/generated-by: OpenShiftNewApp
+      openshift.io/scc: restricted-v2
+      seccomp.security.alpha.kubernetes.io/pod: runtime/default
+    creationTimestamp: "2024-06-15T22:41:20Z"
+    generateName: ruby-hello-world-645775c5fb-
+    labels:
+      deployment: ruby-hello-world
+      pod-template-hash: 645775c5fb
+    name: ruby-hello-world-645775c5fb-bmlkk
+    namespace: demo
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: ruby-hello-world-645775c5fb
+      uid: 39364c38-194b-4fea-918f-a9197169f497
+    resourceVersion: "154038"
+    uid: 80986e85-4b17-43b6-a86c-ce9a94bcb979
+  spec:
+    containers:
+    - image: image-registry.openshift-image-registry.svc:5000/demo/ruby-hello-world@sha256:c1b2688c7fc9a7cdc45fbc9dbeceb163fcbdda0cccca4eeb5849fe0aa5a8162c
+      imagePullPolicy: IfNotPresent
+      name: ruby-hello-world
+      ports:
+      - containerPort: 8080
+        protocol: TCP
+      resources: {}
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        runAsNonRoot: true
+        runAsUser: 1000700000
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-zzg4p
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: default-dockercfg-dvwp6
+    nodeName: crc
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext:
+      fsGroup: 1000700000
+      seLinuxOptions:
+        level: s0:c26,c25
+      seccompProfile:
+        type: RuntimeDefault
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-zzg4p
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+        - configMap:
+            items:
+            - key: service-ca.crt
+              path: service-ca.crt
+            name: openshift-service-ca.crt
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2024-06-15T22:46:11Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2024-06-15T22:46:18Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2024-06-15T22:46:18Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2024-06-15T22:46:11Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: cri-o://e76e3b7fa95c493ce247692cdf6f20814088aca53f59b37310922197e720a41d
+      image: image-registry.openshift-image-registry.svc:5000/demo/ruby-hello-world@sha256:c1b2688c7fc9a7cdc45fbc9dbeceb163fcbdda0cccca4eeb5849fe0aa5a8162c
+      imageID: image-registry.openshift-image-registry.svc:5000/demo/ruby-hello-world@sha256:c1b2688c7fc9a7cdc45fbc9dbeceb163fcbdda0cccca4eeb5849fe0aa5a8162c
+      lastState: {}
+      name: ruby-hello-world
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2024-06-15T22:46:18Z"
+    hostIP: 192.168.126.11
+    phase: Running
+    podIP: 10.217.0.152
+    podIPs:
+    - ip: 10.217.0.152
+    qosClass: BestEffort
+    startTime: "2024-06-15T22:46:11Z"
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""

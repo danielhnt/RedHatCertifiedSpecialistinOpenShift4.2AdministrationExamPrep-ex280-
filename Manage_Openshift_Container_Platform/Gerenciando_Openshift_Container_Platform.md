@@ -56,9 +56,11 @@ oc get all
 
 Export resources to a yamlfile
 oc get -o yaml <resource> > <resources>.yaml
+oc get -o yaml pods > resources/pod.yaml
 
 Export resources to a json.file
 oc get -o json <resource> > <resource>.json
+oc get
 
 Create a resource from a yaml file
 oc create -f <resource>.yaml
