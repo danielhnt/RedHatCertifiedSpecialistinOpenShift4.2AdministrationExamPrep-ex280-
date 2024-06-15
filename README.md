@@ -1,0 +1,1 @@
+# RedHatCertifiedSpecialistinOpenShift4.2AdministrationExamPrep-ex280-
