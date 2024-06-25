@@ -1,19 +1,18 @@
-Six things to know
+Seis Coisas para Saber para a Certificação Red Hat OpenShift
+1. Siga os Objetivos
+O exame segue rigorosamente os objetivos, então certifique-se de entendê-los completamente. Revise os objetivos e garanta que você esteja confortável com cada um deles.
 
-Stick the objectives
-The exam sticks to the objectives closely, so get them down
+2. Conheça a Documentação
+Você pode usar a documentação durante o exame, então familiarize-se com ela. Saiba onde encontrar rapidamente as informações de que precisa. Pratique a navegação na documentação para economizar tempo durante o exame.
 
-Know the documentation
-You are able to use the documentation, so know where everything is located. Get familiar with it, and know where to look.
+3. Use oc --help e oc adm --help
+Os comandos oc --help, oc <command> --help, oc adm --help e oc adm <command> --help são seus amigos. Esses comandos fornecem informações valiosas e exemplos de uso que podem ajudá-lo durante o exame.
 
-Use oc --help and oc adm --help
-The oc --help, oc <command> --help, oc adm --help, and oc adm <command> --help commands are you friends
+4. Gestão do Tempo
+Três horas podem parecer muito tempo, mas passam rápido. Foque nas três primeiras dicas para gerenciar seu tempo de forma eficaz. A navegação eficiente pelos objetivos e documentação economizará minutos valiosos.
 
-Time
-Three hours may seem like a lot of time, but its goes by fast. Really focus on the first three tips on this link --they will help you with your time management.
+5. Leia Cuidadosamente
+Embora existam muitas maneiras de completar a maioria das tarefas, o exame exige convenções específicas de nomenclatura e configuração. Leia as instruções com atenção para garantir que você siga os procedimentos exigidos com precisão.
 
-Read carefolly
-Though there are many ways to complete most tasks, how they want things named and set up is very precise.
-
-Any Answer is better than no answer
-Dont leave anything blank. Partial credit is better than no credit.
+6. Qualquer Resposta é Melhor que Nenhuma Resposta
+Não deixe nada em branco. Pontos parciais são melhores do que nenhum ponto. Tente responder a todas as perguntas, mesmo que não tenha certeza da resposta completa.
