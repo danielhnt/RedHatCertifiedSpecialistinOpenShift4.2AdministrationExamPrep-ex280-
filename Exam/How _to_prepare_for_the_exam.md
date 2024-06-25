@@ -1,4 +1,4 @@
-## Seis Coisas para Saber para a Certificação Red Hat OpenShift
+## Seis dicas para se preparar para a Certificação Red Hat OpenShift
 
 ### 1. Siga os Objetivos
 O exame segue rigorosamente os objetivos, então certifique-se de entendê-los completamente. Revise os objetivos e garanta que você esteja confortável com cada um deles.
